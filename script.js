@@ -1,3 +1,41 @@
+// Mobile nav toggle (hamburguesa)
+const navToggle = document.getElementById('navToggle');
+const navLinksMenu = document.querySelector('.nav-links');
+const navOverlay = document.getElementById('navOverlay');
+
+function closeMobileMenu() {
+  navToggle.classList.remove('active');
+  navLinksMenu.classList.remove('active');
+  navOverlay.classList.remove('active');
+  navToggle.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+
+function openMobileMenu() {
+  navToggle.classList.add('active');
+  navLinksMenu.classList.add('active');
+  navOverlay.classList.add('active');
+  navToggle.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+}
+
+if (navToggle && navLinksMenu && navOverlay) {
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinksMenu.classList.contains('active');
+    isOpen ? closeMobileMenu() : openMobileMenu();
+  });
+
+  navOverlay.addEventListener('click', closeMobileMenu);
+
+  navLinksMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) closeMobileMenu();
+  });
+}
+
 // Scroll reveal
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
@@ -358,18 +396,57 @@ function initMatrixRain() {
   document.body.appendChild(canvas);
 
   const ctx = canvas.getContext('2d');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?~';
   const charArray = chars.split('');
-  const fontSize = 14;
-  const columns = Math.floor(canvas.width / fontSize);
-  const drops = Array(columns).fill(1);
 
-  function draw() {
+  let fontSize, columns, drops, dpr;
+  let animationId = null;
+  let lastFrame = 0;
+
+  // Tamaño de fuente adaptado al ancho de pantalla: en móvil, letras
+  // más grandes = menos columnas = mejor rendimiento y visual menos saturado.
+  function getFontSize(width) {
+    if (width <= 480) return 20;
+    if (width <= 768) return 17;
+    if (width <= 1024) return 15;
+    return 14;
+  }
+
+  // (Re)configura el canvas y recalcula columnas/gotas según el tamaño actual.
+  function setupCanvas() {
+    dpr = window.devicePixelRatio || 1;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    fontSize = getFontSize(width);
+    columns = Math.ceil(width / fontSize);
+
+    const prevDrops = drops;
+    drops = Array(columns).fill(0).map((_, i) => {
+      // Conserva el progreso de las columnas existentes al redimensionar
+      return prevDrops && prevDrops[i] !== undefined ? prevDrops[i] : Math.random() * height / fontSize;
+    });
+  }
+
+  function draw(timestamp) {
+    animationId = requestAnimationFrame(draw);
+
+    // Limita el efecto a ~20fps: se ve igual de bien y consume menos batería,
+    // sobre todo en celulares.
+    if (timestamp - lastFrame < 50) return;
+    lastFrame = timestamp;
+
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
     ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillRect(0, 0, width, height);
 
     ctx.fillStyle = '#00FF88';
     ctx.font = fontSize + 'px monospace';
@@ -379,7 +456,7 @@ function initMatrixRain() {
       ctx.globalAlpha = Math.random() * 0.5 + 0.1;
       ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
-      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+      if (drops[i] * fontSize > height && Math.random() > 0.975) {
         drops[i] = 0;
       }
       drops[i]++;
@@ -387,11 +464,27 @@ function initMatrixRain() {
     ctx.globalAlpha = 1;
   }
 
-  setInterval(draw, 50);
+  setupCanvas();
+  animationId = requestAnimationFrame(draw);
 
+  // Debounce del resize: en móvil el evento se dispara muchas veces seguidas
+  // (por ejemplo al ocultarse la barra de direcciones), así que esperamos
+  // a que termine antes de recalcular todo.
+  let resizeTimeout;
   window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(setupCanvas, 150);
+  });
+
+  // Pausa la animación si la pestaña no está visible, para no gastar
+  // batería/CPU de más en dispositivos móviles.
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      cancelAnimationFrame(animationId);
+    } else {
+      lastFrame = 0;
+      animationId = requestAnimationFrame(draw);
+    }
   });
 }
 
