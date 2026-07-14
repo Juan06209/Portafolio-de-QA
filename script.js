@@ -10,20 +10,6 @@ const observer = new IntersectionObserver((entries) => {
 
 reveals.forEach(el => observer.observe(el));
 
-// Skill bars
-const skillBars = document.querySelectorAll('.skill-bar-fill');
-const barObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const pct = entry.target.getAttribute('data-pct');
-      entry.target.style.width = pct + '%';
-      barObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.5 });
-
-skillBars.forEach(bar => barObserver.observe(bar));
-
 // Active nav highlight on scroll
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
@@ -44,6 +30,7 @@ const translations = {
   es: {
     // Navigation
     "nav-home": "Inicio",
+    "nav-about": "Sobre Mí",
     "nav-services": "Qué Hago",
     "nav-offer": "Qué Ofrezco",
     "nav-skills": "Habilidades",
@@ -59,14 +46,30 @@ const translations = {
     "hero-subtitle": "Tecnólogo en Análisis y Desarrollo de Software con 2 años de experiencia asegurando que cada producto que llega al usuario final sea robusto, funcional y sin errores críticos.",
     "hero-btn-projects": "Ver Proyectos →",
     "hero-btn-skills": "Mis Habilidades",
+    "hero-btn-cv": "Descargar CV",
 
-    // Stats
-    "stat-exp": "Años de Exp.",
-    "stat-projects": "Proyectos",
-    "stat-cert": "Certificación",
+    // About
+    "about-tag": "// 01 — Experiencia",
+    "about-title": "Sobre Mí",
+    "about-summary": "QA Analyst con más de 3+ años de experiencia en aseguramiento de calidad para aplicaciones empresariales en sectores diversos (e-commerce, fintech, legal, retail, salud y ciberseguridad). Especializado en testing manual, automatizado y de APIs con Playwright, Postman y Swagger. Experiencia validando aplicaciones web modernas, flujos de negocio complejos y sistemas transaccionales en ambientes Azure Cloud con pipelines CI/CD, bajo metodologías ágiles (Scrum, Kanban). Historial comprobado colaborando con equipos de desarrollo y producto para garantizar releases estables y de alta calidad en proyectos de alto impacto.",
+    "about-stat-exp": "Años de Experiencia",
+    "about-stat-sectors": "Sectores",
+    "about-stat-projects": "Proyectos",
+    "timeline-1-date": "2023 — Presente",
+    "timeline-1-title": "QA Engineer",
+    "timeline-1-company": "Proyectos Freelance & Contratos",
+    "timeline-1-desc": "Automatización de pruebas con Playwright y Cypress, testing de APIs con Postman y Swagger, gestión de bugs en Jira. Flujos CI/CD en Azure y Jenkins.",
+    "timeline-2-date": "2022 — 2023",
+    "timeline-2-title": "QA Analyst",
+    "timeline-2-company": "E-Commerce & Retail",
+    "timeline-2-desc": "Validación de flujos de compra, pagos y catálogos. Pruebas de regresión y smoke testing en ciclos ágiles con Scrum.",
+    "timeline-3-date": "2021 — 2022",
+    "timeline-3-title": "Junior QA Tester",
+    "timeline-3-company": "Salud & Ciberseguridad",
+    "timeline-3-desc": "Ejecución de casos de prueba manuales, documentación de bugs en Jira, pruebas exploratorias en aplicaciones móviles y web.",
 
     // Services
-    "services-tag": "// 01 — Especialidades",
+    "services-tag": "// 02 — Especialidades",
     "services-title": "Qué Hago",
     "service-manual-title": "Pruebas Manuales",
     "service-manual-desc": "Ejecución exhaustiva de casos de prueba de forma manual, identificando bugs y comportamientos inesperados antes de que impacten a usuarios reales.",
@@ -78,11 +81,13 @@ const translations = {
     "service-api-desc": "Testing completo de APIs REST con Postman y Swagger: validación de endpoints, respuestas, autenticación, y manejo de errores en cada integración.",
     "service-gherkin-title": "Escenarios Gherkin",
     "service-gherkin-desc": "Diseño y montaje de escenarios de prueba en lenguaje Gherkin (BDD), haciendo la documentación legible para equipos técnicos y de negocio.",
+    "service-automation-title": "Automatización & CI/CD",
+    "service-automation-desc": "Diseño y ejecución de automatización con Playwright, Cypress, Robot Framework, Selenium y pipelines CI/CD en Azure, Jenkins y Docker.",
     "service-jira-title": "Gestión con Jira",
     "service-jira-desc": "Manejo experto de Jira para seguimiento de bugs, gestión de sprints, reportes de calidad y comunicación efectiva del estado de los proyectos.",
 
     // Offer
-    "offer-tag": "// 02 — Propuesta de Valor",
+    "offer-tag": "// 03 — Propuesta de Valor",
     "offer-title": "Qué Ofrezco",
     "offer-1-title": "Cobertura Total de Calidad",
     "offer-1-desc": "Gestión completa del ciclo QA: desde el análisis de requerimientos hasta el cierre de bugs y validación en producción.",
@@ -98,22 +103,26 @@ const translations = {
     "offer-6-desc": "Análisis de métricas de calidad para identificar patrones de fallo y proponer mejoras en procesos de desarrollo.",
 
     // Skills
-    "skills-tag": "// 03 — Skills & Tools",
+    "skills-tag": "// 04 — Skills & Tools",
     "skills-title": "Habilidades",
-    "skill-manual": "Pruebas Manuales",
-    "skill-jira": "Jira",
+    "skill-manual": "Pruebas Manuales & Exploratorias",
+    "skill-automation": "Playwright / Cypress / Robot Framework",
+    "skill-api": "API Testing / REST Assured / Postman",
+    "skill-jira": "Jira / X-Ray / Gestión de Bugs",
     "skill-gherkin": "Gherkin / BDD",
-    "skill-postman": "Postman & Swagger",
-    "skill-regression": "Pruebas de Regresión",
-    "skill-security": "Ciberseguridad",
-    "skill-ai": "Uso de la IA",
-    "skill-scrum": "Metodologías Scrum",
+    "skill-regression": "Pruebas de Regresión & E2E",
+    "skill-cloud": "Azure / CI-CD / Jenkins / Docker",
+    "skill-security": "Ciberseguridad & Riesgos",
+    "skill-js": "JavaScript / TypeScript / SPA",
+    "skill-ai": "Uso de IA para QA",
+    "skill-scrum": "Scrum / Kanban",
     "cert-title": "Google Cybersecurity",
     "cert-desc": "Certificación Profesional de Google en Ciberseguridad — fundamentos de seguridad, redes, sistemas, Python para automatización y respuesta a incidentes.",
     "cert-verified": "✓ Certificado Verificado",
+    "cert-link": "Ver certificado",
 
     // Projects
-    "projects-tag": "// 04 — Portfolio",
+    "projects-tag": "// 05 — Portfolio",
     "projects-title": "Proyectos",
     "project-1-type": "Web & App — Delivery",
     "project-1-desc": "Plataforma de pedidos de comida similar a Rappi, disponible en web y app móvil. Gestión de QA para flujos de pedido, pagos, tracking en tiempo real y notificaciones.",
@@ -144,9 +153,9 @@ const translations = {
     "tag-api-security": "API Security",
 
     // Contact
-    "contact-tag": "// 05 — Get In Touch",
+    "contact-tag": "// 06 — Get In Touch",
     "contact-title": "Contacto",
-    "contact-intro": "¿Tienes un proyecto en mente o quieres trabajar juntos? Me encantaría escucharte. Contáctame a través de cualquiera de estos canales:",
+    "contact-intro": "¿Tienes un proyecto en mente o quieres trabajar juntos? Conectemos.",
     "contact-email-title": "Email",
     "contact-whatsapp-title": "WhatsApp",
     "contact-linkedin-title": "LinkedIn"
@@ -154,6 +163,7 @@ const translations = {
   en: {
     // Navigation
     "nav-home": "Home",
+    "nav-about": "About Me",
     "nav-services": "What I Do",
     "nav-offer": "What I Offer",
     "nav-skills": "Skills",
@@ -169,14 +179,30 @@ const translations = {
     "hero-subtitle": "Software Analysis and Development Technologist with 2 years of experience ensuring that every product reaching the end user is robust, functional, and free of critical errors.",
     "hero-btn-projects": "View Projects →",
     "hero-btn-skills": "My Skills",
+    "hero-btn-cv": "Download CV",
 
-    // Stats
-    "stat-exp": "Years Exp.",
-    "stat-projects": "Projects",
-    "stat-cert": "Certification",
+    // About
+    "about-tag": "// 01 — Experience",
+    "about-title": "About Me",
+    "about-summary": "QA Analyst with 3+ years of experience in quality assurance for enterprise applications across diverse sectors (e-commerce, fintech, legal, retail, health, and cybersecurity). Specialized in manual, automated, and API testing with Playwright, Postman, and Swagger. Experience validating modern web applications, complex business flows, and transactional systems in Azure Cloud environments with CI/CD pipelines, under agile methodologies (Scrum, Kanban). Proven track record collaborating with development and product teams to deliver stable, high-quality releases in high-impact projects.",
+    "about-stat-exp": "Years of Experience",
+    "about-stat-sectors": "Sectors",
+    "about-stat-projects": "Projects",
+    "timeline-1-date": "2023 — Present",
+    "timeline-1-title": "QA Engineer",
+    "timeline-1-company": "Freelance & Contract Projects",
+    "timeline-1-desc": "Test automation with Playwright and Cypress, API testing with Postman and Swagger, bug tracking in Jira. CI/CD pipelines in Azure and Jenkins.",
+    "timeline-2-date": "2022 — 2023",
+    "timeline-2-title": "QA Analyst",
+    "timeline-2-company": "E-Commerce & Retail",
+    "timeline-2-desc": "Validation of purchase flows, payments, and catalogs. Regression and smoke testing in agile cycles with Scrum.",
+    "timeline-3-date": "2021 — 2022",
+    "timeline-3-title": "Junior QA Tester",
+    "timeline-3-company": "Health & Cybersecurity",
+    "timeline-3-desc": "Manual test case execution, bug documentation in Jira, exploratory testing on mobile and web applications.",
 
     // Services
-    "services-tag": "// 01 — Specialties",
+    "services-tag": "// 02 — Specialties",
     "services-title": "What I Do",
     "service-manual-title": "Manual Testing",
     "service-manual-desc": "Thorough execution of test cases manually, identifying bugs and unexpected behaviors before they impact real users.",
@@ -188,11 +214,13 @@ const translations = {
     "service-api-desc": "Complete REST API testing with Postman and Swagger: endpoint validation, responses, authentication, and error handling in each integration.",
     "service-gherkin-title": "Gherkin Scenarios",
     "service-gherkin-desc": "Design and assembly of test scenarios in Gherkin language (BDD), making documentation readable for technical and business teams.",
+    "service-automation-title": "Automation & CI/CD",
+    "service-automation-desc": "Design and execution of automation with Playwright, Cypress, Robot Framework, Selenium and CI/CD pipelines in Azure, Jenkins and Docker.",
     "service-jira-title": "Jira Management",
     "service-jira-desc": "Expert handling of Jira for bug tracking, sprint management, quality reports, and effective project status communication.",
 
     // Offer
-    "offer-tag": "// 02 — Value Proposition",
+    "offer-tag": "// 03 — Value Proposition",
     "offer-title": "What I Offer",
     "offer-1-title": "Total Quality Coverage",
     "offer-1-desc": "Complete QA cycle management: from requirements analysis to bug closure and production validation.",
@@ -208,22 +236,26 @@ const translations = {
     "offer-6-desc": "Quality metrics analysis to identify failure patterns and propose process improvements.",
 
     // Skills
-    "skills-tag": "// 03 — Skills & Tools",
+    "skills-tag": "// 04 — Skills & Tools",
     "skills-title": "Skills",
-    "skill-manual": "Manual Testing",
-    "skill-jira": "Jira",
+    "skill-manual": "Manual & Exploratory Testing",
+    "skill-automation": "Playwright / Cypress / Robot Framework",
+    "skill-api": "API Testing / REST Assured / Postman",
+    "skill-jira": "Jira / X-Ray / Bug Management",
     "skill-gherkin": "Gherkin / BDD",
-    "skill-postman": "Postman & Swagger",
-    "skill-regression": "Regression Testing",
-    "skill-security": "Cybersecurity",
-    "skill-ai": "AI Usage",
-    "skill-scrum": "Scrum Methodologies",
+    "skill-regression": "Regression & E2E Testing",
+    "skill-cloud": "Azure / CI-CD / Jenkins / Docker",
+    "skill-security": "Cybersecurity & Risk",
+    "skill-js": "JavaScript / TypeScript / SPA",
+    "skill-ai": "AI Use for QA",
+    "skill-scrum": "Scrum / Kanban",
     "cert-title": "Google Cybersecurity",
     "cert-desc": "Google Cybersecurity Professional Certification — security fundamentals, networks, systems, Python for automation and incident response.",
     "cert-verified": "✓ Verified Certificate",
+    "cert-link": "View certificate",
 
     // Projects
-    "projects-tag": "// 04 — Portfolio",
+    "projects-tag": "// 05 — Portfolio",
     "projects-title": "Projects",
     "project-1-type": "Web & App — Delivery",
     "project-1-desc": "Food ordering platform similar to Rappi, available on web and mobile app. QA management for order flows, payments, real-time tracking, and notifications.",
@@ -254,9 +286,9 @@ const translations = {
     "tag-api-security": "API Security",
 
     // Contact
-    "contact-tag": "// 05 — Get In Touch",
+    "contact-tag": "// 06 — Get In Touch",
     "contact-title": "Contact",
-    "contact-intro": "Do you have a project in mind or want to work together? I'd love to hear from you. Contact me through any of these channels:",
+    "contact-intro": "Got a project in mind or want to work together? Let's connect.",
     "contact-email-title": "Email",
     "contact-whatsapp-title": "WhatsApp",
     "contact-linkedin-title": "LinkedIn"
@@ -308,4 +340,12 @@ document.addEventListener('DOMContentLoaded', () => {
       setLanguage(lang);
     });
   });
+
+  // Hide loader after page loads
+  setTimeout(() => {
+    const loader = document.getElementById('loader');
+    if (loader) {
+      loader.classList.add('hidden');
+    }
+  }, 1800);
 });

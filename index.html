@@ -9,11 +9,23 @@
 </head>
 <body>
 
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="loader-content">
+    <div class="loader-logo">QA<span>//</span></div>
+    <div class="loader-bar">
+      <div class="loader-bar-fill"></div>
+    </div>
+    <div class="loader-text">Cargando Portfolio...</div>
+  </div>
+</div>
+
 <!-- NAVBAR -->
 <nav>
   <div class="nav-logo">QA<span>// ENGINEER</span></div>
   <ul class="nav-links">
     <li><a href="#hero" data-lang-key="nav-home">Inicio</a></li>
+    <li><a href="#sobre-mi" data-lang-key="nav-about">Sobre Mí</a></li>
     <li><a href="#que-hago" data-lang-key="nav-services">Qué Hago</a></li>
     <li><a href="#ofrezco" data-lang-key="nav-offer">Qué Ofrezco</a></li>
     <li><a href="#habilidades" data-lang-key="nav-skills">Habilidades</a></li>
@@ -54,21 +66,65 @@
       <div class="hero-cta">
         <a href="#proyectos" class="btn-primary" data-lang-key="hero-btn-projects">Ver Proyectos &#8594;</a>
         <a href="#habilidades" class="btn-outline" data-lang-key="hero-btn-skills">Mis Habilidades</a>
+        <a href="Multimedia/CV_Juan_Camilo_Hernandez.pdf" download class="btn-cv" data-lang-key="hero-btn-cv">Descargar CV</a>
       </div>
     </div>
   </div>
-  <div class="hero-stats">
-    <div class="stat-item">
-      <div class="stat-num">2+</div>
-      <div class="stat-label" data-lang-key="stat-exp">Años de Exp.</div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section id="sobre-mi">
+  <div class="section-header reveal">
+    <div class="section-tag" data-lang-key="about-tag">// 01 — Experiencia</div>
+    <h2 class="section-title" data-lang-key="about-title">Sobre Mí</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-layout">
+    <div class="about-resume reveal">
+      <p data-lang-key="about-summary">QA Analyst con más de 3+ años de experiencia en aseguramiento de calidad para aplicaciones empresariales en sectores diversos (e-commerce, fintech, legal, retail, salud y ciberseguridad). Especializado en testing manual, automatizado y de APIs con Playwright, Postman y Swagger. Experiencia validando aplicaciones web modernas, flujos de negocio complejos y sistemas transaccionales en ambientes Azure Cloud con pipelines CI/CD, bajo metodologías ágiles (Scrum, Kanban). Historial comprobado colaborando con equipos de desarrollo y producto para garantizar releases estables y de alta calidad en proyectos de alto impacto.</p>
+      <div class="about-stats">
+        <div class="about-stat-item">
+          <div class="about-stat-num">3+</div>
+          <div class="about-stat-label" data-lang-key="about-stat-exp">Años de Experiencia</div>
+        </div>
+        <div class="about-stat-item">
+          <div class="about-stat-num">6+</div>
+          <div class="about-stat-label" data-lang-key="about-stat-sectors">Sectores</div>
+        </div>
+        <div class="about-stat-item">
+          <div class="about-stat-num">5+</div>
+          <div class="about-stat-label" data-lang-key="about-stat-projects">Proyectos</div>
+        </div>
+      </div>
     </div>
-    <div class="stat-item">
-      <div class="stat-num">5</div>
-      <div class="stat-label" data-lang-key="stat-projects">Proyectos</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">2</div>
-      <div class="stat-label" data-lang-key="stat-cert">Certificación</div>
+    <div class="timeline reveal">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-date" data-lang-key="timeline-1-date">2023 — Presente</div>
+          <h3 data-lang-key="timeline-1-title">QA Engineer</h3>
+          <p class="timeline-company" data-lang-key="timeline-1-company">Proyectos Freelance & Contratos</p>
+          <p data-lang-key="timeline-1-desc">Automatización de pruebas con Playwright y Cypress, testing de APIs con Postman y Swagger, gestión de bugs en Jira. Flujos CI/CD en Azure y Jenkins.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-date" data-lang-key="timeline-2-date">2022 — 2023</div>
+          <h3 data-lang-key="timeline-2-title">QA Analyst</h3>
+          <p class="timeline-company" data-lang-key="timeline-2-company">E-Commerce & Retail</p>
+          <p data-lang-key="timeline-2-desc">Validación de flujos de compra, pagos y catálogos. Pruebas de regresión y smoke testing en ciclos ágiles con Scrum.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-date" data-lang-key="timeline-3-date">2021 — 2022</div>
+          <h3 data-lang-key="timeline-3-title">Junior QA Tester</h3>
+          <p class="timeline-company" data-lang-key="timeline-3-company">Salud & Ciberseguridad</p>
+          <p data-lang-key="timeline-3-desc">Ejecución de casos de prueba manuales, documentación de bugs en Jira, pruebas exploratorias en aplicaciones móviles y web.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -76,7 +132,7 @@
 <!-- QUÉ HAGO -->
 <section id="que-hago">
   <div class="section-header reveal">
-    <div class="section-tag" data-lang-key="services-tag">// 01 — Especialidades</div>
+    <div class="section-tag" data-lang-key="services-tag">// 02 — Especialidades</div>
     <h2 class="section-title" data-lang-key="services-title">Qué Hago</h2>
     <div class="section-line"></div>
   </div>
@@ -107,6 +163,11 @@
       <p data-lang-key="service-gherkin-desc">Diseño y montaje de escenarios de prueba en lenguaje Gherkin (BDD), haciendo la documentación legible para equipos técnicos y de negocio.</p>
     </div>
     <div class="service-card reveal">
+      <div class="service-icon">⚙️</div>
+      <h3 data-lang-key="service-automation-title">Automatización & CI/CD</h3>
+      <p data-lang-key="service-automation-desc">Diseño y ejecución de automatización con Playwright, Cypress, Robot Framework, Selenium y pipelines CI/CD en Azure, Jenkins y Docker.</p>
+    </div>
+    <div class="service-card reveal">
       <div class="service-icon">📋</div>
       <h3 data-lang-key="service-jira-title">Gestión con Jira</h3>
       <p data-lang-key="service-jira-desc">Manejo experto de Jira para seguimiento de bugs, gestión de sprints, reportes de calidad y comunicación efectiva del estado de los proyectos.</p>
@@ -117,7 +178,7 @@
 <!-- QUÉ OFREZCO -->
 <section id="ofrezco">
   <div class="section-header reveal">
-    <div class="section-tag" data-lang-key="offer-tag">// 02 — Propuesta de Valor</div>
+    <div class="section-tag" data-lang-key="offer-tag">// 03 — Propuesta de Valor</div>
     <h2 class="section-title" data-lang-key="offer-title">Qué Ofrezco</h2>
     <div class="section-line"></div>
   </div>
@@ -170,68 +231,23 @@
 <!-- HABILIDADES -->
 <section id="habilidades">
   <div class="section-header reveal">
-    <div class="section-tag" data-lang-key="skills-tag">// 03 — Skills & Tools</div>
+    <div class="section-tag" data-lang-key="skills-tag">// 04 — Skills & Tools</div>
     <h2 class="section-title" data-lang-key="skills-title">Habilidades</h2>
     <div class="section-line"></div>
   </div>
   <div class="skills-layout">
-    <div class="skill-bar-group">
-      <div class="skill-bar-item reveal">
-        <div class="skill-bar-header">
-          <span class="skill-bar-name" data-lang-key="skill-manual">Pruebas Manuales</span>
-          <span class="skill-bar-pct">95%</span>
-        </div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="95"></div></div>
-      </div>
-      <div class="skill-bar-item reveal">
-        <div class="skill-bar-header">
-          <span class="skill-bar-name" data-lang-key="skill-jira">Jira</span>
-          <span class="skill-bar-pct">98%</span>
-        </div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="98"></div></div>
-      </div>
-      <div class="skill-bar-item reveal">
-        <div class="skill-bar-header">
-          <span class="skill-bar-name" data-lang-key="skill-gherkin">Gherkin / BDD</span>
-          <span class="skill-bar-pct">90%</span>
-        </div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="90"></div></div>
-      </div>
-      <div class="skill-bar-item reveal">
-        <div class="skill-bar-header">
-          <span class="skill-bar-name" data-lang-key="skill-postman">Postman & Swagger</span>
-          <span class="skill-bar-pct">88%</span>
-        </div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="88"></div></div>
-      </div>
-      <div class="skill-bar-item reveal">
-        <div class="skill-bar-header">
-          <span class="skill-bar-name" data-lang-key="skill-regression">Pruebas de Regresión</span>
-          <span class="skill-bar-pct">92%</span>
-        </div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="92"></div></div>
-      </div>
-      <div class="skill-bar-item reveal">
-        <div class="skill-bar-header">
-          <span class="skill-bar-name" data-lang-key="skill-security">Ciberseguridad</span>
-          <span class="skill-bar-pct">80%</span>
-        </div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="80"></div></div>
-      </div>
-      <div class="skill-bar-item reveal">
-        <div class="skill-bar-header">
-          <span class="skill-bar-name" data-lang-key="skill-ai">Uso de la IA</span>
-          <span class="skill-bar-pct">95%</span>
-        </div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="95"></div></div>
-      </div>
-      <div class="skill-bar-item reveal">
-        <div class="skill-bar-header">
-          <span class="skill-bar-name" data-lang-key="skill-scrum">Metodologías Scrum</span>
-          <span class="skill-bar-pct">90%</span>
-        </div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="90"></div></div>
-      </div>
+    <div class="skills-tags-group reveal">
+      <div class="skill-tag-item" data-lang-key="skill-manual">Pruebas Manuales & Exploratorias</div>
+      <div class="skill-tag-item" data-lang-key="skill-automation">Playwright / Cypress / Robot Framework</div>
+      <div class="skill-tag-item" data-lang-key="skill-api">API Testing / REST Assured / Postman</div>
+      <div class="skill-tag-item" data-lang-key="skill-jira">Jira / X-Ray / Gestión de Bugs</div>
+      <div class="skill-tag-item" data-lang-key="skill-gherkin">Gherkin / BDD</div>
+      <div class="skill-tag-item" data-lang-key="skill-regression">Pruebas de Regresión & E2E</div>
+      <div class="skill-tag-item" data-lang-key="skill-cloud">Azure / CI-CD / Jenkins / Docker</div>
+      <div class="skill-tag-item" data-lang-key="skill-security">Ciberseguridad & Riesgos</div>
+      <div class="skill-tag-item" data-lang-key="skill-js">JavaScript / TypeScript / SPA</div>
+      <div class="skill-tag-item" data-lang-key="skill-ai">Uso de IA para QA</div>
+      <div class="skill-tag-item" data-lang-key="skill-scrum">Scrum / Kanban</div>
     </div>
     <div>
       <div class="cert-badge reveal">
@@ -239,14 +255,24 @@
         <h3 data-lang-key="cert-title">Google Cybersecurity</h3>
         <p data-lang-key="cert-desc">Certificación Profesional de Google en Ciberseguridad — fundamentos de seguridad, redes, sistemas, Python para automatización y respuesta a incidentes.</p>
         <div class="cert-tag" data-lang-key="cert-verified">✓ Certificado Verificado</div>
+        <a class="cert-link" href="https://coursera.org/verify/professional-cert/BIWF39B6DEYY" target="_blank" rel="noopener noreferrer" data-lang-key="cert-link">Ver certificado</a>
       </div>
       <div class="tools-grid">
         <div class="tool-pill reveal">Jira</div>
+        <div class="tool-pill reveal">X-Ray</div>
         <div class="tool-pill reveal">Postman</div>
         <div class="tool-pill reveal">Swagger</div>
+        <div class="tool-pill reveal">REST Assured</div>
         <div class="tool-pill reveal">Gherkin</div>
         <div class="tool-pill reveal">Cucumber</div>
+        <div class="tool-pill reveal">Playwright</div>
+        <div class="tool-pill reveal">Cypress</div>
+        <div class="tool-pill reveal">Robot Framework</div>
+        <div class="tool-pill reveal">Selenium</div>
         <div class="tool-pill reveal">Git</div>
+        <div class="tool-pill reveal">Azure</div>
+        <div class="tool-pill reveal">Jenkins</div>
+        <div class="tool-pill reveal">Docker</div>
         <div class="tool-pill reveal">Chrome DevTools</div>
         <div class="tool-pill reveal">SQL</div>
         <div class="tool-pill reveal">Excel</div>
@@ -255,6 +281,7 @@
         <div class="tool-pill reveal">Slack</div>
         <div class="tool-pill reveal">IA</div>
         <div class="tool-pill reveal">Scrum</div>
+        <div class="tool-pill reveal">Kanban</div>
       </div>
     </div>
   </div>
@@ -263,7 +290,7 @@
 <!-- PROYECTOS -->
 <section id="proyectos">
   <div class="section-header reveal">
-    <div class="section-tag" data-lang-key="projects-tag">// 04 — Portfolio</div>
+    <div class="section-tag" data-lang-key="projects-tag">// 05 — Portfolio</div>
     <h2 class="section-title" data-lang-key="projects-title">Proyectos</h2>
     <div class="section-line"></div>
   </div>
@@ -329,40 +356,33 @@
 <!-- CONTACTO -->
 <section id="contacto">
   <div class="section-header reveal">
-    <div class="section-tag" data-lang-key="contact-tag">// 05 — Get In Touch</div>
+    <div class="section-tag" data-lang-key="contact-tag">// 06 — Get In Touch</div>
     <h2 class="section-title" data-lang-key="contact-title">Contacto</h2>
     <div class="section-line"></div>
   </div>
-  <div class="contact-container">
-    <div class="contact-content reveal">
-      <p class="contact-intro" data-lang-key="contact-intro">¿Tienes un proyecto en mente o quieres trabajar juntos? Me encantaría escucharte. Contáctame a través de cualquiera de estos canales:</p>
-      
-      <div class="contact-methods">
-        <div class="contact-item reveal">
-          <div class="contact-icon">📧</div>
-          <div class="contact-info">
-            <h3 data-lang-key="contact-email-title">Email</h3>
-            <a href="mailto:juancamilohernandezgomez1@gmail.com">juancamilohernandezgomez1@gmail.com</a>
-          </div>
-        </div>
-        
-        <div class="contact-item reveal">
-          <div class="contact-icon">💬</div>
-          <div class="contact-info">
-            <h3 data-lang-key="contact-whatsapp-title">WhatsApp</h3>
-            <a href="https://wa.me/573015061515" target="_blank">+57 3015061515</a>
-          </div>
-        </div>
-        
-        <div class="contact-item reveal">
-          <div class="contact-icon">💼</div>
-          <div class="contact-info">
-            <h3 data-lang-key="contact-linkedin-title">LinkedIn</h3>
-            <a href="https://www.linkedin.com/in/juan-camilo-hernandez-gomez-0a584731b" target="_blank">juan-camilo-hernandez-gomez-0a584731b</a>
-          </div>
-        </div>
+  <p class="contact-intro reveal" data-lang-key="contact-intro">¿Tienes un proyecto en mente o quieres trabajar juntos? Conectemos.</p>
+  <div class="social-grid">
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=juancamilohernandezgomez1@gmail.com" target="_blank" class="social-card reveal" data-color="#EA4335">
+      <div class="social-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="40" height="40"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
       </div>
-    </div>
+      <div class="social-name">Email</div>
+      <div class="social-detail">juancamilo...@gmail.com</div>
+    </a>
+    <a href="https://wa.me/573015061515" target="_blank" class="social-card reveal" data-color="#25D366">
+      <div class="social-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="40" height="40"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </div>
+      <div class="social-name">WhatsApp</div>
+      <div class="social-detail">+57 3015061515</div>
+    </a>
+    <a href="https://www.linkedin.com/in/juan-camilo-hern%C3%A1ndez-g%C3%B3mez-0a584731b" target="_blank" class="social-card reveal" data-color="#0A66C2">
+      <div class="social-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="40" height="40"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </div>
+      <div class="social-name">LinkedIn</div>
+      <div class="social-detail">juan-camilo-hernandez</div>
+    </a>
   </div>
 </section>
 
